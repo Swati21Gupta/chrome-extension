@@ -59,7 +59,6 @@ screenshot = {
         for (let i = 0; i < views.length; i++) {
           let view = views[i];
           if (view.location.href == viewTabUrl) {
-            console.log(viewTabUrl);
             view.setScreenshotUrl(data);
             break;
           }
@@ -68,6 +67,7 @@ screenshot = {
       
       chrome.tabs.create({ url: viewTabUrl }, (tab) => {
         targetId = tab.id;
+        alert("Check screenshot preview");
         chrome.tabs.onUpdated.addListener(function listener(tabId, changeInfo) {
           if (tabId == tab.id && changeInfo.status == 'complete') {
             chrome.tabs.onUpdated.removeListener(listener);
